@@ -9,11 +9,14 @@ import Controlador.Ctrl_BD;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import static java.lang.System.exit;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
@@ -144,15 +147,19 @@ public class VPrincipal extends javax.swing.JFrame {
         } else if (i == 3) {
             etiqueta.setVisible(true);
             etiqueta.setText("BIENVENIDO AL TRABAJO");
-            etiqueta.setForeground(Color.green);
+            etiqueta.setForeground(Color.magenta);
 
         }
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException ex) {
-            System.out.println("ERROR : " + ex.getMessage());
-        }
-        etDNI.setText("");
+        Timer timer = new Timer();  
+                TimerTask tarea = new TimerTask() {  
+                    @Override  
+                    public void run() {  
+  
+                        etiqueta.setText("");
+                        etDNI.setText("");
+                    }  
+                };  
+                timer.schedule(tarea, 1500);
 
     }
 
